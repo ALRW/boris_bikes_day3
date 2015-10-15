@@ -32,7 +32,9 @@ describe DockingStation do
 
     describe '#release_bike' do
       it 'raises an error if there is no bike' do
-        expect{subject.release_bike}.to raise_error("There is no bike present")
+
+      # changed the error message here
+        expect{subject.release_bike}.to raise_error("There is no working bike present")
       end
 
       it 'does not release a bike if it is broken' do
@@ -42,7 +44,7 @@ describe DockingStation do
         subject.dock(bike)
         subject.dock(Bike.new)
         2.times { subject.release_bike }
-        expect{subject.release_bike}.to raise_error("No available working bikes")
+        expect{subject.release_bike}.to raise_error("There is no working bike present")
       end
     end
 
